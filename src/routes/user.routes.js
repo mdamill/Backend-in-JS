@@ -1,8 +1,30 @@
+// routes/user.routes.js
 import { Router } from "express";
 import { registerUser } from "../controllers/user.controller.js";
+import { upload } from "../middlewares/multer.middleware.js";  // <-- your multer
+import { loginUser, logoutUser } from '../controllers/user.controller.js'
+import { verifyJWT } from '../middlewares/auth.middleware.js'
 
-const router = Router()
+const router = Router();
 
-router.route("/register").post(registerUser)
+// register route with multer middleware
+router.route("/register").post(
+  upload.fields([
+    {
+      name: "avatar",
+      maxCount: 1
+    },
+    {
+      name: "coverImage",
+      maxCount: 1
+    }
+  ]),
+  registerUser
+)
 
-export default router
+
+router.route("/login").post(loginUser)
+
+router.route("/logout").post(verifyJWT, logoutUser)
+
+export default router;

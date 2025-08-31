@@ -33,13 +33,18 @@ import {DB_NAME} from './constants.js'
     }
 })()
 */
-
 import dotenv from "dotenv"
+dotenv.config({ path: "C:/Users/mdami/OneDrive/Desktop/BACKEND/Backend in JS/.env" });
 import connectDB from "./db/index.js";
 import {app} from './app.js'
-dotenv.config({
-    path: './.env'
-})
+
+
+console.log("Cloudinary ENV Check:", {
+  CLOUD_NAME: process.env.CLOUDINARY_CLOUD_NAME,
+  API_KEY: process.env.CLOUDINARY_API_KEY,
+  API_SECRET: process.env.CLOUDINARY_API_SECRET ? "✅ loaded" : "❌ missing"
+});
+
 
 connectDB()
 .then(() => {
