@@ -10,12 +10,6 @@ cloudinary.config({
   api_secret: process.env.CLOUDINARY_API_SECRET,
 });
 
-// ✅ Debug log to confirm Cloudinary sees the values
-console.log("Cloudinary Config ->", {
-  CLOUD_NAME: process.env.CLOUDINARY_CLOUD_NAME,
-  API_KEY: process.env.CLOUDINARY_API_KEY,
-  API_SECRET: process.env.CLOUDINARY_API_SECRET ? "✅ loaded" : "❌ missing",
-});
 
 const uploadOnCloudinary = async (localFilePath) => {
   try {
@@ -28,7 +22,7 @@ const uploadOnCloudinary = async (localFilePath) => {
     fs.unlinkSync(localFilePath); // remove local file
     return response;
   } catch (error) {
-    console.error("❌ Cloudinary upload error:", error.message);
+    // console.error("❌ Cloudinary upload error:", error.message);
     if (fs.existsSync(localFilePath)) fs.unlinkSync(localFilePath);
     return null;
   }

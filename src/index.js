@@ -38,14 +38,6 @@ dotenv.config({ path: "C:/Users/mdami/OneDrive/Desktop/BACKEND/Backend in JS/.en
 import connectDB from "./db/index.js";
 import {app} from './app.js'
 
-
-console.log("Cloudinary ENV Check:", {
-  CLOUD_NAME: process.env.CLOUDINARY_CLOUD_NAME,
-  API_KEY: process.env.CLOUDINARY_API_KEY,
-  API_SECRET: process.env.CLOUDINARY_API_SECRET ? "✅ loaded" : "❌ missing"
-});
-
-
 connectDB()
 .then(() => {
     app.listen(process.env.PORT || 8000, () => {
